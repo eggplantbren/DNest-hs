@@ -1,0 +1,48 @@
+name:                DNest-hs
+version:             0.1.0.0
+github:              "eggplantbren/DNest-hs"
+license:             BSD3
+author:              "Brendon J. Brewer"
+maintainer:          "brendon.brewer@gmail.com"
+copyright:           "2019 Brendon J. Brewer"
+
+extra-source-files:
+- README.md
+- ChangeLog.md
+
+# Metadata used when publishing your package
+# synopsis:            Short description of your package
+category:            Science
+
+# To avoid duplicated efforts in documentation and dealing with the
+# complications of embedding Haddock markup inside cabal files, it is
+# common to point users to the README.md file.
+description:         Please see the README on GitHub at <https://github.com/eggplantbren/DNest-hs#readme>
+
+dependencies:
+    - base >= 4.7 && < 5
+
+library:
+  source-dirs: src
+
+executables:
+  Main:
+    main:                Main.hs
+    source-dirs:         app
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - DNest-hs
+
+tests:
+  DNest-hs-test:
+    main:                Spec.hs
+    source-dirs:         test
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - DNest-hs
