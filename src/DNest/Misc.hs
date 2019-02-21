@@ -3,13 +3,13 @@
 module DNest.Misc where
 
 -- Logsumexp
-logsumexp :: Double -> Double -> Double
-logsumexp a b = log (exp (a - xm) + exp (b - xm)) + xm where
+logSumExp :: Double -> Double -> Double
+logSumExp a b = log (exp (a - xm) + exp (b - xm)) + xm where
   xm = max a b
 
 -- Logdiffexp
-logdiffexp :: Double -> Double -> Double
-logdiffexp a b
+logDiffExp :: Double -> Double -> Double
+logDiffExp a b
     | b >= a = 0
     | otherwise = b + log (exp (a - b) - 1.0)
 
@@ -20,9 +20,9 @@ myMod y x = (y/x - (fromIntegral . floor) (y/x))*x
 -- Wrap
 wrap :: Double -> (Double, Double) -> Double
 wrap x (a, b)
-    | x < xmin || x > xmax = myMod (x - xmin) (xmax - xmin) + xmin
+    | x < xMin || x > xMax = myMod (x - xMin) (xMax - xMin) + xMin
     | otherwise            = x
   where
-    xmin = min a b
-    xmax = max a b
+    xMin = min a b
+    xMax = max a b
 
