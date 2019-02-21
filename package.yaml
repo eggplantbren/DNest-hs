@@ -24,6 +24,7 @@ dependencies:
     - mwc-random
     - primitive
     - text
+    - vector
 
 library:
   source-dirs: src
