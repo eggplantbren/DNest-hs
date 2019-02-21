@@ -1,6 +1,10 @@
 module Main where
 
-import Lib
+import DNest.Demo
+import System.Random.MWC
 
 main :: IO ()
-main = someFunc
+main = withSystemRandom . asGenIO $ \rng -> do
+    particle <- demoFromPrior rng
+    print $ render particle
+

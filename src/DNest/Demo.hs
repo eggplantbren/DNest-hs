@@ -37,6 +37,16 @@ demoLogLikelihood :: DemoParticle -> Double
 demoLogLikelihood DemoParticle {..} = U.foldl' (\acc x -> acc - 0.5*x*x) 0.0 xs
 
 
+-- Render to text
+render :: DemoParticle -> T.Text
+render DemoParticle {..} =
+    let
+        strings = (\x -> show x ++ ",") <$> U.toList xs
+        string  = mconcat strings
+        string' = init string
+    in
+        T.pack string'
+
 -- Typeclass instance    
 instance Walkable DemoParticle where
     fromPrior = demoFromPrior
