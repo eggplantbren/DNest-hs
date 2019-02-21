@@ -15,7 +15,7 @@ logDiffExp a b
 
 -- Mod
 myMod :: Double -> Double -> Double
-myMod y x = (y/x - (fromIntegral . floor) (y/x))*x
+myMod y x = (y/x - ((fromIntegral :: Int -> Double) . floor) (y/x))*x
 
 -- Wrap
 wrap :: Double -> (Double, Double) -> Double

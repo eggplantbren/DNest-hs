@@ -8,8 +8,6 @@ module DNest.Demo where
 import Control.Monad.Primitive
 import DNest.Walkable
 import qualified Data.Text as T
-import qualified Data.Text.IO as T
-import qualified Data.Vector as V
 import qualified Data.Vector.Unboxed as U
 import System.Random.MWC
 
