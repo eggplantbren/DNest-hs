@@ -2,6 +2,11 @@
 
 module DNest.Misc where
 
+-- Imports
+import Control.Monad.Primitive
+import System.Random.MWC
+import System.Random.MWC.Distributions
+
 -- Logsumexp
 logSumExp :: Double -> Double -> Double
 logSumExp a b = log (exp (a - xm) + exp (b - xm)) + xm where
@@ -25,4 +30,11 @@ wrap x (a, b)
   where
     xMin = min a b
     xMax = max a b
+
+-- Heavy tailed distribution
+randh :: PrimMonad m => Gen (PrimState m) -> m Double
+randh rng = do
+    cauchy <- (\u -> tan (pi * (u - 0.5))) <$> uniform rng
+    n <- standard rng
+    return $ 10.0 ** (1.5 - abs cauchy) * n
 
