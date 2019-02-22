@@ -24,7 +24,10 @@ data Sampler a = Walkable a =>
 initSampler :: Walkable a
             => Int -> Gen RealWorld -> IO (Sampler a)
 initSampler numParticles rng = do
+    putStr $ "Generating " ++ show numParticles
+                           ++ " particles from the prior..."
     particles <- V.replicateM numParticles (fromPrior rng)
     let loglStore = V.toList $ V.map logLikelihood particles
+    seq loglStore $ putStrLn "done."
     return $ Sampler {..}
 
