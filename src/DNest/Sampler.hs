@@ -39,9 +39,15 @@ initSampler _options rng = do
 --explore :: (Walkable a, PrimMonad m)
 --        => Sampler a -> Gen (PrimState m) -> m (Sampler a)
 --explore Sampler {..} rng = loop (threadSteps options)
---    where loop n =
---        do
---            -- Choose a particle to move
---            k <- uniformR (0, numParticles options - 1)
---            
+--    where
+--        loop n
+--            | n == 0 = return $! Sampler {..}
+--            | otherwise = do
+--                -- Choose a particle to move
+--                k <- uniformR (0, numParticles options - 1) rng
+--                (proposal, logH) <- perturb (particles V.! k) rng
+--                let a = if logH > 0.0 then 1.0 else exp logH
+--                u <- uniform rng
+--                let updated = if u < a then proposal else (particles V.! k)
+--                loop (n-1)
 
