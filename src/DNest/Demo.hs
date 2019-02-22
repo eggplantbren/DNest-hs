@@ -18,10 +18,10 @@ n :: Int
 n = 10
 
 -- Particle type
-data DemoParticle =
+newtype DemoParticle =
         DemoParticle
         {
-            xs :: !(U.Vector Double)
+            xs :: U.Vector Double
         } deriving (Eq, Read, Show)
 
 
@@ -47,7 +47,7 @@ demoPerturb DemoParticle {..} rng = do
         UM.unsafeWrite mvec k x''
         U.unsafeFreeze mvec
 
-    return $ (DemoParticle xs', 0.0)
+    return (DemoParticle xs', 0.0)
 
 
 -- Log likelihood
