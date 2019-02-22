@@ -7,6 +7,7 @@ module DNest.Sampler where
 
 -- Imports
 import Control.Monad.Primitive
+import Control.Parallel (pseq)
 import DNest.Walkable
 import qualified Data.Vector as V
 import System.Random.MWC
@@ -28,6 +29,6 @@ initSampler numParticles rng = do
                            ++ " particles from the prior..."
     particles <- V.replicateM numParticles (fromPrior rng)
     let loglStore = V.toList $ V.map logLikelihood particles
-    seq loglStore $ putStrLn "done."
+    pseq loglStore $ putStrLn "done."
     return $ Sampler {..}
 
