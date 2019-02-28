@@ -1,6 +1,5 @@
 {- The sampler itself. -}
 
-{-# LANGUAGE ExistentialQuantification #-}
 {-# LANGUAGE RecordWildCards #-}
 
 module DNest.Sampler where
@@ -14,7 +13,7 @@ import qualified Data.Vector as V
 import System.Random.MWC
 
 -- Sampler type
-data Sampler a = Walkable a =>
+data Sampler a =
         Sampler
         {
             particles    :: !(V.Vector a),
