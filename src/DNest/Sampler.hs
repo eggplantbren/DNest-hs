@@ -58,5 +58,8 @@ explore sampler rng = loop sampler (threadSteps $ options sampler)
                                     V.unsafeFreeze mvec
                                 else
                                     return particles
-                loop Sampler {particles=particles', ..} (n-1)
+                let loglStore' = (logLikelihood $ (particles' V.! k)):loglStore
+                loop Sampler
+                        { particles=particles', loglStore=loglStore', .. }
+                        (n-1)
 

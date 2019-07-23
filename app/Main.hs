@@ -12,5 +12,9 @@ main = withSystemRandom . asGenIO $ \rng -> do
 
     -- Sampler for default example
     sampler <- initSampler defaultOptions rng :: IO (Sampler DemoParticle)
+
+    -- Do some exploration
+    _ <- explore sampler rng
+
     return ()
 
